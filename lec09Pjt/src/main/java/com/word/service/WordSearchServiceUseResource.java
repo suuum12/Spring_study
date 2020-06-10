@@ -1,16 +1,18 @@
 package com.word.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
 
 import com.word.WordSet;
 import com.word.dao.WordDao;
 
-public class WordSearchService {
+public class WordSearchServiceUseResource {
 	
+	@Resource
 	private WordDao wordDao;
 	
-	@Autowired
-	public WordSearchService(WordDao wordDao) {
+	public WordSearchServiceUseResource() {}
+	
+	public WordSearchServiceUseResource(WordDao wordDao) {
 		this.wordDao = wordDao;
 	}
 	

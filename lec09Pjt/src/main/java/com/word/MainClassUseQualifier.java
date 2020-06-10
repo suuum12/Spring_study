@@ -2,10 +2,10 @@ package com.word;
 
 import org.springframework.context.support.GenericXmlApplicationContext;
 
-import com.word.service.WordRegisterServiceUseResource;
-import com.word.service.WordSearchServiceUseResource;
+import com.word.service.WordRegisterServiceUseQualifier;
+import com.word.service.WordSearchServiceUseQualifier;
 
-public class MainClass {
+public class MainClassUseQualifier {
 
 	public static void main(String[] args) {
 		
@@ -17,17 +17,17 @@ public class MainClass {
 				"스프링 프레임워크는 자바 플랫폼을 위한 오픈소스 애플리케이션 프레임워크로서 간단히 스프링이라고도 불린다."};
 		
 		GenericXmlApplicationContext ctx = 
-				new GenericXmlApplicationContext("classpath:appCtx.xml");
+				new GenericXmlApplicationContext("classpath:appCtxUseQualifier.xml");
 		
-		WordRegisterServiceUseResource registerService = 
-				ctx.getBean("registerService", WordRegisterServiceUseResource.class);
+		WordRegisterServiceUseQualifier registerService = 
+				ctx.getBean("registerService", WordRegisterServiceUseQualifier.class);
 		for (int i = 0; i < values.length; i++) {
 			WordSet wordSet = new WordSet(keyWords[i], values[i]);
 			registerService.register(wordSet);
 		}
 		
-		WordSearchServiceUseResource searchService = 
-				ctx.getBean("searchService", WordSearchServiceUseResource.class);
+		WordSearchServiceUseQualifier searchService = 
+				ctx.getBean("searchService", WordSearchServiceUseQualifier.class);
 		
 		System.out.println("\n\n------------------------------------");
 		for (int i = 0; i < keyWords.length; i++) {
