@@ -1,5 +1,7 @@
 package org.zerock.config;
 
+import javax.servlet.ServletRegistration;
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer   {
@@ -18,5 +20,11 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 	protected String[] getServletMappings() { // 스프링 mvc의 기본 경로
 		return new String[] { "/" };
 	}
+	
+	@Override
+	protected void customizeRegistration(ServletRegistration.Dynamic registration) {
 
+		registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
+
+	}
 }
