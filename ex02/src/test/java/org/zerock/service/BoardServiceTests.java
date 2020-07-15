@@ -68,4 +68,10 @@ public class BoardServiceTests {
 		
 		log.info("MODIFY RESULT: " + service.modify(board));
 	}
+	
+	@Test
+	public void testRemove() {
+		
+		log.info("REMOVE RESULT: " + service.remove(2L));
+	}
 }
