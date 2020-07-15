@@ -9,5 +9,27 @@
 		select * from tbl_board where bno > 0 
 		]]>
 	</select>
-
+	
+	<insert id="insert">
+		insert into tbl_board (title, content, writer)
+		values (#{title}, #{content}, #{writer})
+	</insert>
+	
+	<insert id="insertSelectKey">
+			
+		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+			select LAST_INSERT_ID()
+		</selectKey>
+		
+		insert into tbl_board (title, content, writer)
+		values (#{title}, #{content}, #{writer})
+	</insert>
+	
+	<select id="read" resultType="org.zerock.domain.BoardVO">
+		select * from tbl_board where bno = #{bno}
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_board where bno = #{bno}
+	</delete>
 </mapper>
