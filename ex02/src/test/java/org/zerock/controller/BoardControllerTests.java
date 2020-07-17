@@ -1,5 +1,7 @@
 package org.zerock.controller;
 
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.queryParam;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,6 +45,18 @@ public class BoardControllerTests {
 				.andReturn()
 				.getModelAndView()
 				.getModelMap());
+	}
+	
+	@Test
+	public void testRegister() throws Exception {
+		
+		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
+				.param("title", "테스트 새 글 제목")
+				.param("content", "테스트 새 글 내용")
+				.param("writer", "테스트 유저")
+			).andReturn().getModelAndView().getViewName();
+		
+		log.info(resultPage);
 	}
 
 
