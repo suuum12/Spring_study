@@ -30,6 +30,14 @@ public class BoardController {
 		model.addAttribute("list", service.getList());
 	}
 	
+	@GetMapping("/get")
+	public void list(@RequestParam("bno") Long bno, Model model) {
+		
+		log.info("/get--------------------------------");
+		
+		model.addAttribute("board", service.get(bno));
+	}
+	
 	@PostMapping("/register")
 	public String register(BoardVO board, RedirectAttributes rttr) {
 		
@@ -41,5 +49,28 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
+	@PostMapping("/modify")
+	public String modify(BoardVO board, RedirectAttributes rttr) {
+		
+		log.info("Modify: " + board);
+		
+		if (service.modify(board)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		
+		return "redirect:/board/list";
+	}
 
+	@PostMapping("/remove")
+	public String remove(@RequestParam("bno") Long bno, RedirectAttributes rttr) {
+		
+		log.info("remove: " + bno);
+		
+		if (service.remove(bno)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		
+		return "redirect:/board/list";
+	}
 }
